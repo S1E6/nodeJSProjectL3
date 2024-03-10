@@ -1,0 +1,17 @@
+datasource db {
+  url      = env("DATABASE_URL")
+  provider = "postgresql"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Material {
+  id        String      @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  createdAt DateTime @default(now())
+  numeroMaterial     String   @unique @db.VarChar(5)
+  design      String? @db.VarChar(20)
+  etat  String @db.VarChar(10)
+  quantite Int 
+}
